@@ -1,9 +1,11 @@
-require "rails_helper"
-
 RSpec.describe Guest, type: :model do
   subject { Guest.new(email: "test@example.com", first_name: "Test", last_name: "Guest", phone_numbers: ["1234567890"]) }
 
-  describe "#validations" do
+  describe "associations" do
+    it { should have_many(:reservations) }
+  end
+
+  describe "validations" do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:first_name) }
     it { should validate_presence_of(:last_name) }
@@ -19,8 +21,10 @@ RSpec.describe Guest, type: :model do
     end
 
     context "when email is valid" do
-      subject.email = "valid@example.com"
-      expect(subject).to be_valid
+      it do
+        subject.email = "valid@example.com"
+        expect(subject).to be_valid
+      end
     end
   end
 end

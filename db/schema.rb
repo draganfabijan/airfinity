@@ -24,22 +24,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_17_061840) do
   end
 
   create_table "reservations", force: :cascade do |t|
+    t.bigint "guest_id"
     t.string "code"
     t.date "start_date"
     t.date "end_date"
     t.string "status"
     t.integer "nights"
-    t.decimal "payout_price"
-    t.decimal "security_price"
-    t.decimal "total_price"
+    t.decimal "payout_price", precision: 10, scale: 2
+    t.decimal "security_price", precision: 10, scale: 2
+    t.decimal "total_price", precision: 10, scale: 2
     t.string "currency"
-    t.string "total_number_of_guests"
-    t.string "number_of_adults"
-    t.string "number_of_children"
-    t.string "number_of_infants"
+    t.integer "total_number_of_guests"
+    t.integer "number_of_adults"
+    t.integer "number_of_children"
+    t.integer "number_of_infants"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_reservations_on_code", unique: true
+    t.index ["guest_id"], name: "index_reservations_on_guest_id"
   end
 
 end

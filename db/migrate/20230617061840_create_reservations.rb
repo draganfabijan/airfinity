@@ -1,19 +1,20 @@
 class CreateReservations < ActiveRecord::Migration[7.0]
   def change
     create_table :reservations do |t|
+      t.belongs_to :guest
       t.string :code
       t.date :start_date
       t.date :end_date
       t.string :status
       t.integer :nights
-      t.decimal :payout_price
-      t.decimal :security_price
-      t.decimal :total_price
+      t.decimal :payout_price, precision: 10, scale: 2
+      t.decimal :security_price, precision: 10, scale: 2
+      t.decimal :total_price, precision: 10, scale: 2
       t.string :currency
-      t.string :total_number_of_guests
-      t.string :number_of_adults
-      t.string :number_of_children
-      t.string :number_of_infants
+      t.integer :total_number_of_guests
+      t.integer :number_of_adults
+      t.integer :number_of_children
+      t.integer :number_of_infants
 
       t.timestamps
     end
