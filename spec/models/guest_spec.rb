@@ -1,5 +1,4 @@
 RSpec.describe Guest, type: :model do
-  subject { Guest.new(email: "test@example.com", first_name: "Test", last_name: "Guest", phone_numbers: ["1234567890"]) }
 
   describe "associations" do
     it { should have_many(:reservations) }
@@ -13,18 +12,17 @@ RSpec.describe Guest, type: :model do
     it { should validate_uniqueness_of(:email) }
 
     context "when email is invalid" do
+      let(:guest) { FactoryBot.build(:guest, email: "invalid email") }
       it do
-        subject.email = "invalid email"
-        expect(subject).to_not be_valid
-        expect(subject.errors[:email]).to include("is invalid")
+        expect(guest).to_not be_valid
+        expect(guest.errors[:email]).to include("is invalid")
       end
     end
 
     context "when email is valid" do
-      it do
-        subject.email = "valid@example.com"
-        expect(subject).to be_valid
-      end
+      let(:guest) { FactoryBot.build(:guest, email: "rodeo@gmail.com") }
+
+      it { expect(guest).to be_valid }
     end
   end
 end
