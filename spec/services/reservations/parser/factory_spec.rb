@@ -1,21 +1,29 @@
 RSpec.describe ::Reservations::Parser::Factory do
   describe "#parser" do
 
-    subject(:factory) { described_class.new(payload) }
+    subject(:factory) { described_class.new(payload).parser }
 
     context "when payload has reservation key" do
       let(:payload) { { "reservation" => {} } }
 
-      it "returns an instance of Airbnb" do
-        expect(factory.parser).to be_instance_of(::Reservations::Parser::Airbnb)
+      it "calls parse method on Reservations::Parser::Airbnb instance" do
+        airbnb_parser = instance_double(::Reservations::Parser::Airbnb)
+        expect(::Reservations::Parser::Airbnb).to receive(:new).with(payload).and_return(airbnb_parser)
+        expect(airbnb_parser).to receive(:parse)
+
+        factory
       end
     end
 
     context "when payload has reservation_code key" do
-      let(:payload) { { "reservation_code" => {} } }
+      let(:payload) { { "reservation_code" => "YYY12345678" } }
 
-      it "returns an instance of Booking" do
-        expect(factory.parser).to be_instance_of(::Reservations::Parser::BookingCom)
+      it "calls parse method on Reservations::Parser::BookingCom instance" do
+        booking_com_parser = instance_double(::Reservations::Parser::BookingCom)
+        expect(::Reservations::Parser::BookingCom).to receive(:new).with(payload).and_return(booking_com_parser)
+        expect(booking_com_parser).to receive(:parse)
+
+        factory
       end
     end
 
@@ -23,8 +31,9 @@ RSpec.describe ::Reservations::Parser::Factory do
       let(:payload) { { "invalid_key" => {} } }
 
       it "raises StandardError" do
-        expect { factory.parser }.to raise_error(StandardError, "Invalid payload")
+        expect { factory }.to raise_error(StandardError, "Invalid payload")
       end
     end
+
   end
 end
