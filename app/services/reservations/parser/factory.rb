@@ -2,7 +2,7 @@
 
 module Reservations
   module Parser
-    # ::Reservations::Parser::Factory
+    # ::Reservations::Parser::Factory.new(payload).parser
     class Factory
       def initialize(payload)
         @payload = payload
