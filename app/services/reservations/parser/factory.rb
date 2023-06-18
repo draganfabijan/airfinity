@@ -9,14 +9,15 @@ module Reservations
       end
 
       def parser
-        if @payload.key?('reservation')
-          Airbnb.new(@payload)
-        elsif @payload.key?('reservation_code')
-          BookingCom.new(@payload)
+        if @payload.key?("reservation")
+          Airbnb.new(@payload).parse
+        elsif @payload.key?("reservation_code")
+          BookingCom.new(@payload).parse
         else
-          raise StandardError, 'Invalid payload'
+          raise StandardError, "Invalid payload"
         end
       end
+
     end
   end
 end

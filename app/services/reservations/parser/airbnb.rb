@@ -18,31 +18,31 @@ module Reservations
       private
 
       def parse_guest
-        guest_info = @payload['guest']
+        guest_info = @payload["guest"]
 
         {
-          first_name: guest_info['first_name'],
-          last_name: guest_info['last_name'],
-          email: guest_info['email'],
-          phone_numbers: [guest_info['phone']]
+          first_name: guest_info["first_name"],
+          last_name: guest_info["last_name"],
+          email: guest_info["email"],
+          phone_numbers: [guest_info["phone"]]
         }
       end
 
       def parse_reservation
         {
-          code: @payload['reservation_code'],
-          start_date: @payload['start_date'],
-          end_date: @payload['end_date'],
-          status: @payload['status'],
-          nights: @payload['nights'],
-          payout_price: @payload['payout_price'],
-          security_price: @payload['security_price'],
-          total_price: @payload['total_price'],
-          currency: @payload['currency'],
-          total_number_of_guests: @payload['guests'],
-          number_of_adults: @payload['adults'],
-          number_of_children: @payload['children'],
-          number_of_infants: @payload['infants']
+          code: @payload["reservation_code"],
+          start_date: @payload["start_date"],
+          end_date: @payload["end_date"],
+          status: @payload["status"],
+          nights: @payload["nights"],
+          payout_price: @payload["payout_price"],
+          security_price: @payload["security_price"],
+          total_price: @payload["total_price"],
+          currency: @payload["currency"],
+          total_number_of_guests: @payload["guests"],
+          number_of_adults: @payload["adults"],
+          number_of_children: @payload["children"],
+          number_of_infants: @payload["infants"]
         }
       end
     end
