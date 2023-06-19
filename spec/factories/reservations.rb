@@ -14,5 +14,6 @@ FactoryBot.define do
     number_of_adults       { 2 }
     number_of_children     { 1 }
     number_of_infants      { 1 }
+    source                 { Reservation::SOURCE_BOOKING_COM }
   end
 end
