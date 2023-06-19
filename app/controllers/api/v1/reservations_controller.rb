@@ -10,8 +10,8 @@ module Api
 
         begin
           ActiveRecord::Base.transaction do
-            guest = Guests::CreateOrUpdate.new(reservation_data[:guest]).call!
-            Reservations::CreateOrUpdate.new(guest, reservation_data[:reservation]).call!
+            guest = ::Guests::CreateOrUpdate.new(reservation_data[:guest]).call!
+            ::Reservations::CreateOrUpdate.new(guest, reservation_data[:reservation]).call!
           end
 
           render json: { message: "Reservation successfully created or updated." }, status: :ok
