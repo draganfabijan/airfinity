@@ -13,6 +13,8 @@ module Airfinity
 
     config.autoload_paths += Dir[Rails.root.join('app', 'services')]
 
+    config.annotations.register_tags("OBSERVATION")
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
