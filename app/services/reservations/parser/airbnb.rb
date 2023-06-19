@@ -18,13 +18,11 @@ module Reservations
       private
 
       def parse_guest
-        guest_info = @payload["guest"]
-
         {
-          first_name: guest_info["first_name"],
-          last_name: guest_info["last_name"],
-          email: guest_info["email"],
-          phone_numbers: [guest_info["phone"]]
+          first_name: @payload.dig("guest", "first_name"),
+          last_name: @payload.dig("guest", "last_name"),
+          email: @payload.dig("guest", "email"),
+          phone_numbers: [@payload.dig("guest", "phone")]
         }
       end
 

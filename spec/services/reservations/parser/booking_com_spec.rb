@@ -37,7 +37,7 @@ RSpec.describe Reservations::Parser::BookingCom do
           first_name: "John",
           last_name: "Cash",
           email: "john.cash@example.com",
-          phone: "639123456789, 987654321"
+          phone_numbers: "639123456789, 987654321"
         },
         reservation: {
           code: "ABC123",

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Guest
 class Guest < ApplicationRecord
 
   # Associations

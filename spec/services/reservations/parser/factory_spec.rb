@@ -4,7 +4,7 @@ RSpec.describe ::Reservations::Parser::Factory do
     subject(:factory) { described_class.new(payload).parser }
 
     context "when payload has reservation key" do
-      let(:payload) { { "reservation" => {} } }
+      let(:payload) { { "reservation_code" => {} } }
 
       it "calls parse method on Reservations::Parser::Airbnb instance" do
         airbnb_parser = instance_double(::Reservations::Parser::Airbnb)
@@ -16,7 +16,7 @@ RSpec.describe ::Reservations::Parser::Factory do
     end
 
     context "when payload has reservation_code key" do
-      let(:payload) { { "reservation_code" => "YYY12345678" } }
+      let(:payload) { { "reservation" => "YYY12345678" } }
 
       it "calls parse method on Reservations::Parser::BookingCom instance" do
         booking_com_parser = instance_double(::Reservations::Parser::BookingCom)
