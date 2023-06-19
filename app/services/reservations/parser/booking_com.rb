@@ -25,7 +25,7 @@ module Reservations
           first_name: guest_info["guest_first_name"],
           last_name: guest_info["guest_last_name"],
           email: guest_info["guest_email"],
-          phone: phone_numbers ? phone_numbers.join(", ") : nil
+          phone_numbers: phone_numbers ? phone_numbers.join(", ") : nil
         }
       end
 
@@ -42,10 +42,10 @@ module Reservations
           security_price: reservation_info["listing_security_price_accurate"],
           total_price: reservation_info["total_paid_amount_accurate"],
           currency: reservation_info["host_currency"],
-          total_number_of_guests: reservation_info["guest_details"]["number_of_guests"],
-          number_of_adults: reservation_info["guest_details"]["number_of_adults"],
-          number_of_children: reservation_info["guest_details"]["number_of_children"],
-          number_of_infants: reservation_info["guest_details"]["number_of_infants"],
+          total_number_of_guests: reservation_info.dig("guest_details", "number_of_guests"),
+          number_of_adults: reservation_info.dig("guest_details", "number_of_adults"),
+          number_of_children: reservation_info.dig("guest_details", "number_of_children"),
+          number_of_infants: reservation_info.dig("guest_details", "number_of_infants"),
           source: Reservation::SOURCE_BOOKING_COM
         }
       end

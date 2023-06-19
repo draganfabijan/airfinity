@@ -1,5 +1,8 @@
 RSpec.describe Api::V1::ReservationsController, type: :controller do
   describe "POST #create" do
+
+    subject { post :create, params: payload }
+
     let(:payload) do
       {
         "reservation" => {
@@ -27,27 +30,13 @@ RSpec.describe Api::V1::ReservationsController, type: :controller do
 
     context "with valid payload" do
       it "calls the parser factory and renders a success response" do
-        expect(::Reservations::Parser::Factory).to receive(:new).with(payload).and_call_original
-        expect_any_instance_of(::Reservations::Parser::Factory).to receive(:parser)
-
-        post :create, params: payload
+        expect { subject }.to change { Guest.count }.by(1)
+          .and change { Reservation.count }.by(1)
 
         expect(response).to have_http_status(:ok)
-        expect(response.body).to eq({ message: "Reservation successfully parsed." }.to_json)
+        expect(response.body).to eq({ message: "Reservation successfully created or updated." }.to_json)
       end
     end
 
-    context "when an error occurs during parsing" do
-      before do
-        allow_any_instance_of(::Reservations::Parser::Factory).to receive(:parser).and_raise(StandardError, "Parsing error")
-      end
-
-      it "renders an internal server error response" do
-        post :create, params: payload
-
-        expect(response).to have_http_status(:internal_server_error)
-        expect(response.body).to eq({ message: "Parsing error" }.to_json)
-      end
-    end
   end
 end

@@ -7,7 +7,7 @@ module Guests
       @guest_data = guest_data
     end
 
-    def call
+    def call!
       guest = find_or_initialize_guest
       guest.assign_attributes(@guest_data)
       guest.save!

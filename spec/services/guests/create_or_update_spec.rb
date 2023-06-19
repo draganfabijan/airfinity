@@ -1,7 +1,7 @@
 RSpec.describe Guests::CreateOrUpdate do
-  describe "#call" do
+  describe "#call!" do
 
-    subject { described_class.new(guest_data).call }
+    subject { described_class.new(guest_data).call! }
 
     context "with valid guest data" do
       let(:guest_data) do
