@@ -12,7 +12,10 @@ class Reservation < ApplicationRecord
 
   # Validations
   validates :code, presence: true, uniqueness: true
-  validates :start_date, :end_date, presence: true
+
+  validates_presence_of :start_date, :end_date, :status, :nights, :payout_price,
+                        :security_price, :total_price, :currency, :total_number_of_guests,
+                        :number_of_adults, :number_of_children, :number_of_infants, :source
 
   # OBSERVATION:
   # Since the data that is coming from platforms is very important for this product
