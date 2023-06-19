@@ -2,6 +2,10 @@
 
 class Reservation < ApplicationRecord
 
+  # Constants
+  SOURCE_AIRBNB = "AirBNB"
+  SOURCE_BOOKING_COM = "Booking.com"
+
   # Associations
   belongs_to :guest
 

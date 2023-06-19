@@ -50,7 +50,8 @@ RSpec.describe Reservations::Parser::Airbnb do
           total_number_of_guests: 4,
           number_of_adults: 2,
           number_of_children: 2,
-          number_of_infants: 0
+          number_of_infants: 0,
+          source: Reservation::SOURCE_AIRBNB
         }
       )
     end
