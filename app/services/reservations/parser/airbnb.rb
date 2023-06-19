@@ -42,7 +42,8 @@ module Reservations
           total_number_of_guests: @payload["guests"],
           number_of_adults: @payload["adults"],
           number_of_children: @payload["children"],
-          number_of_infants: @payload["infants"]
+          number_of_infants: @payload["infants"],
+          source: Reservation::SOURCE_AIRBNB
         }
       end
     end

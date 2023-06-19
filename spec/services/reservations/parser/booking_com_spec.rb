@@ -52,7 +52,8 @@ RSpec.describe Reservations::Parser::BookingCom do
           currency: "AUD",
           security_price: "50.00",
           total_price: "150.00",
-          nights: 2
+          nights: 2,
+          source: Reservation::SOURCE_BOOKING_COM
         }
       )
     end
