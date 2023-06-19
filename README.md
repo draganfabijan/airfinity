@@ -1,5 +1,3 @@
-# README
-
 # Airfinity
 
 This is a Ruby on Rails API Application that is receiving and storing reservations from Airbnb and Booking.com. The versions used are Ruby 3.2.2 and Rails 7.0.5.
